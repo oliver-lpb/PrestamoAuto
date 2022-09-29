@@ -20,6 +20,7 @@ para detener el servidor preciona CTRL + C
 Como base de datos se utiliza Firebase para esto usamos la terminal e instlamos la dependencia con el siguiente comando ingresamos sin comillas "npm install firebase
 @angular/fire
 
+// en caso npm install firebase
 
 
 mas instrucciones con forme avance el proyecto
