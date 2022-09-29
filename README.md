@@ -4,6 +4,7 @@ Este proyecto esta generado con angular [Angular CLI](https://github.com/angular
 
 
 //////////////////// Primera Parte ////////////////////
+
 Instala npm para instalar las dependencias y para iniciar el servidor
 
 Para esto necesitas Node.js instalada en tu equipo
@@ -15,6 +16,7 @@ para iniciar el servidor y ver el proyecto ingresa en la terminal sin comillas "
 para detener el servidor preciona CTRL + C
 
 ////////////////// Segunda Parte ////////////////////
+
 Como base de datos se utiliza Firebase para esto usamos la terminal e instlamos la dependencia con el siguiente comando ingresamos sin comillas "npm install firebase
 @angular/fire
 
