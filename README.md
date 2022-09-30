@@ -19,7 +19,7 @@ Ingrea sin comillas "npm init"
 
 Una vez tengas instalado npm ya esta listo para correr
 
-para iniciar el servidor y ver el proyecto ingresa en la terminal sin comillas "ng server -o"
+para iniciar el servidor y ver el proyecto ingresa en la terminal sin comillas "ng serve --o"
 para detener el servidor preciona CTRL + C
 
 ////////////////// Segunda Parte ////////////////////
