@@ -1,0 +1,71 @@
+<main>
+
+    <div class="formulario">
+
+
+        <form action="">
+            <div class="titulo">Calculo Cuotas</div>
+
+            <div class="grupos">
+                <input type="text" placeholder="Monto">
+            </div>
+
+            <div class="grupos">
+                <input type="text" placeholder="Cuota desada">
+            </div>
+
+            <div class="grupos">
+                
+                <div class="interes">
+                
+
+                    <label for="">Interes Fijo</label>
+                    <input name="interes" (click)="tipoInteres(1)"type="radio">
+                
+                    <label for="">Interes Porcentaje</label>
+                    <input name="interes" (click)="tipoInteres(2)" type="radio">
+                
+                </div>
+
+                <div *ngIf="interesTipo==1" class="fijo">
+                    <input type="text" placeholder="Interes Fijo">
+                </div>
+
+                <div *ngIf="interesTipo==2" class="porcentaje">
+                    <select>
+                        <option value="0.03">3%</option>
+                        <option value="0.05">5%</option>
+                        <option value="0.10">10%</option>
+                        <option value="0.15">15%</option>
+                        <option value="0.20">20%</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="grupos">
+                <input type="date" placeholder="Fecha de pago">
+            </div>
+
+            <div class="grupos">
+                <label for="periodoPagos">Periodo de pago</label>
+                <select name="periodoPagos">
+                    <option value="30">Mensual</option>
+                    <option value="15">Quincenal</option>
+                    <option value="7">Semanal</option>
+                </select>
+            </div>
+
+            <div class="grupos">
+                <input type="text" placeholder="Cliente">
+            </div>
+
+            <div class="grupos">
+                <input type="file" accept="image/png, .jpeg, .jpg, image/gif">
+            </div>
+
+        </form>
+
+    </div>
+
+</main>

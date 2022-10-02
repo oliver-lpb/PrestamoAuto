@@ -38,8 +38,13 @@ export class DatosService {
     this.userModel$.next(tarjeta);
   }
 
-  getTarjetaEdit():Observable<userModel>{
-    return this.userModel$.asObservable();
+  getUsuario(id: string): Observable<any>{
+    return this.firebase.collection('usuarios').doc(id).snapshotChanges();
   }
+
+  actualizaUsuario(id: string, data:any): Promise<any>{
+    return this.firebase.collection('usuarios').doc(id).update(data);
+  }
+
 
 }

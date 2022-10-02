@@ -39,8 +39,5 @@ export class ListUserComponent implements OnInit {
     },error=>{console.log(error)})
   }
 
-  editarTarjeta(tarjeta:userModel){
-    this.dataServices.addTarjetaEdit(tarjeta);
-  }
 
 }

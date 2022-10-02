@@ -1,0 +1,19 @@
+main{
+    
+    margin: 1rem;
+}
+
+.table{
+
+
+}
+
+td{
+    padding: 1rem;
+}
+
+button{
+    padding: 0.5rem;
+    background-color: rgb(128, 143, 230);
+    border: none;
+}

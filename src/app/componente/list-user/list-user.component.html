@@ -1,24 +1,36 @@
 
+<main>
 
-<div class="card">
-    <div class="card-body">
-        <div class="titulo">
-            <h5 class="titulo"><h1>Lista de usarios</h1></h5>
-            <div class="table">
-                <tbody>
-                    <tr *ngFor="let tarjeta of users">
-                        <td>{{tarjeta.nombre}}</td>
-                        <td>{{tarjeta.apellido}}</td>
-                        <td>{{tarjeta.dpi}}</td>
-                        
-                        <td> 
-                            <button (click)="editarTarjeta(tarjeta)">editar</button> 
-                            <button (click)="eliminarTarjeta(tarjeta.id)"> eliminar</button>
-                        </td>
-                        
-                    </tr>
-                </tbody>
+    <li >
+        <a routerLink="addUser">Agregar Cliente</a>
+    </li>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="titulo">
+                <h5 class="titulo"><h1>Lista de Clientes</h1></h5>
+                <div class="table">
+                    <tbody>
+                        <tr>
+                            <td>Nombre</td>
+                            <td>Apellido</td>
+                            <td>Dpi</td>
+                        </tr>
+                        <tr *ngFor="let tarjeta of users">
+                            <td>{{tarjeta.nombre}}</td>
+                            <td>{{tarjeta.apellido}}</td>
+                            <td>{{tarjeta.dpi}}</td>
+                            
+                            <td> 
+                                <button [routerLink]="['/editUsuario/', tarjeta.id]" >editar</button>  
+                                <button (click)="eliminarTarjeta(tarjeta.id)"> eliminar</button>
+                            </td>
+                            
+                        </tr>
+                    </tbody>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    
+</main>
