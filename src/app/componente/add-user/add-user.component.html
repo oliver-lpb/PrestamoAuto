@@ -1,46 +1,48 @@
-<h1>Agrega usuario</h1>
 
-<div >
+<main>
+    <h1>Agrega Cliente</h1>
     <div >
         <div >
-            <h5 class="titulo">{{titulo | uppercase}}
-                <div *ngIf="loading" class="spinner-border float-end" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-            </h5>
-
-            <form [formGroup]="form" (ngSubmit)="registerUser()">
-
-                <div>
+            <div >
+                <h5 class="titulo">
+                    <div *ngIf="loading" class="spinner-border float-end" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </h5>
+    
+                <form [formGroup]="form" (ngSubmit)="agregarEditar()">
+    
+                    <div class="grupo">
+                        
+                        <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre" >
+                    </div>
+    
+                    <div class="grupo">
+                        
+                        <input type="text"  class="form-control" placeholder="Apellido" formControlName="apellido">
+                    </div>
                     
-                    <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre" >
-                </div>
-
-                <div >
-                    
-                    <input type="text"  class="form-control" placeholder="Apellido" formControlName="apellido">
-                </div>
-                
-                <div>
-                    
-                    <input type="text" maxlength="16" class="form-control" placeholder="DPI" formControlName="dpi">
-                </div>
-
-                <div >
-                    
-                    <input type="email"  class="form-control" placeholder="Correo" formControlName="correo">
-                </div>
-
-                <div >
-                    
-                    <input type="text"  class="form-control" placeholder="Direccion" formControlName="direccion">
-                </div>
-
-                <div class="d-grid gap-2"></div>
-                <button class="btn btn-success btn-lg" type="submit">Agregar Usario</button>
-
-            </form>
-
+                    <div class="grupo">
+                        
+                        <input type="text" maxlength="16" class="form-control" placeholder="DPI" formControlName="dpi">
+                    </div>
+    
+                    <div class="grupo">
+                        
+                        <input type="email"  class="form-control" placeholder="Correo" formControlName="correo">
+                    </div>
+    
+                    <div class="grupo">
+                        
+                        <input type="text"  class="form-control" placeholder="Direccion" formControlName="direccion">
+                    </div>
+    
+                    <div class="d-grid gap-2"></div>
+                    <button class="btn btn-success btn-lg" type="submit">Agregar Usario</button>
+    
+                </form>
+    
+            </div>
         </div>
     </div>
-</div>
+</main>

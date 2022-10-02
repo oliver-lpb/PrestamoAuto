@@ -1,0 +1,36 @@
+main{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+}
+
+h1{
+    margin-top: 3rem;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grupo{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+input{
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px solid black;
+
+}
+
+button{
+    padding: 1rem;
+    background-color: rgb(128, 143, 230);
+    border: none;
+}
