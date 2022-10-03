@@ -5,8 +5,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import {AngularFireModule} from '@angular/fire/compat'
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
+
+
 //para hacer funcionar el formulario
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //lista de componentes
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +18,10 @@ import { AddUserComponent } from './componente/add-user/add-user.component';
 import { ListUserComponent } from './componente/list-user/list-user.component';
 import { DashboardComponent } from './componente/dashboard/dashboard.component';
 import { QuotationComponent } from './componente/quotation/quotation.component';
+import { LoginComponent } from './componente/login/login.component';
+import { NavegadorComponent } from './componente/navegador/navegador.component';
+
+
 
 
 @NgModule({
@@ -23,7 +30,10 @@ import { QuotationComponent } from './componente/quotation/quotation.component';
     AddUserComponent,
     ListUserComponent,
     DashboardComponent,
-    QuotationComponent
+    QuotationComponent,
+    LoginComponent,
+    NavegadorComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -31,8 +41,14 @@ import { QuotationComponent } from './componente/quotation/quotation.component';
     //para conectar a firebase
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    //para la autenticacion
+
     //para importar y usar el formulario
     ReactiveFormsModule,
+    FormsModule,
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
