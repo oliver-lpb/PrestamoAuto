@@ -5,6 +5,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {userModel} from '../models/user.model';
 //dependecia para usar Subject y Observable para obtener datos desde firebase
 import { Observable, Subject } from 'rxjs';
+//para la autenticaion
+import { Auth,  } from '@angular/fire/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +48,7 @@ export class DatosService {
   actualizaUsuario(id: string, data:any): Promise<any>{
     return this.firebase.collection('usuarios').doc(id).update(data);
   }
+
 
 
 }

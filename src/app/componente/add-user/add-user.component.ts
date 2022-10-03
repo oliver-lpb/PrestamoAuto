@@ -41,6 +41,15 @@ direccion:['',Validators.required],
     this.leerEditar();
   }
 
+  agregarEditar(){
+    if (this.id === null){
+      this.registerUser();
+    }else{
+      
+      this.actualizarUsuario(this.id);
+    }
+  }
+
   registerUser(){
     const User: userModel= {
       nombre: this.form.value.nombre|| null, //null para que se registre de forma vacia
@@ -63,16 +72,7 @@ direccion:['',Validators.required],
       console.log('Erro','error')
       console.log(error);
     })
-  }
-
-
-
-  agregarEditar(){
-    if (this.id === null){
-      this.registerUser();
-    }else{
-      this.actualizarUsuario(this.id);
-    }
+    this.router.navigate(['./listUser'])
   }
 
   actualizarUsuario(id: string){
@@ -90,13 +90,13 @@ direccion:['',Validators.required],
     this.loading = false;
     console.log('Tarjeta modificada');
     this.form.reset();
-    this.router.navigate(['./'])
+    
     })
+    this.router.navigate(['./listUser'])
   }
 
 
   leerEditar(){
-    this.titulo = 'Editar Empleado'
     if (this.id !== null){
       this.dataServices.getUsuario(this.id).subscribe(data=>{
         console.log(data);

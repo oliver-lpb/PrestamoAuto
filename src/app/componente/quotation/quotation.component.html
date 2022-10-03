@@ -1,17 +1,20 @@
+<app-navegador></app-navegador>
 <main>
 
     <div class="formulario">
 
 
         <form action="">
+
+
             <div class="titulo">Calculo Cuotas</div>
 
             <div class="grupos">
-                <input type="text" placeholder="Monto">
+                <input type="number" placeholder="Monto" [(ngModel)]='monto' name="monto">
             </div>
 
             <div class="grupos">
-                <input type="text" placeholder="Cuota desada">
+                <input type="number" placeholder="Cuota desada" [(ngModel)]='cuotaDeseada' name="cuotaDeseada">
             </div>
 
             <div class="grupos">
@@ -28,10 +31,10 @@
                 </div>
 
                 <div *ngIf="interesTipo==1" class="fijo">
-                    <input type="text" placeholder="Interes Fijo">
+                    <input type="text" placeholder="Interes Fijo" [(ngModel)]='interesFijo' name="interesFijo">
                 </div>
 
-                <div *ngIf="interesTipo==2" class="porcentaje">
+                <div *ngIf="interesTipo==2" class="porcentaje" [(ngModel)]='interesPorcentaje' name="interesPorcentaje">
                     <select>
                         <option value="0.03">3%</option>
                         <option value="0.05">5%</option>
@@ -44,12 +47,12 @@
             </div>
 
             <div class="grupos">
-                <input type="date" placeholder="Fecha de pago">
+                <input type="date" placeholder="Fecha de pago" [(ngModel)]='fechaPago' name="fechaPago">
             </div>
 
             <div class="grupos">
                 <label for="periodoPagos">Periodo de pago</label>
-                <select name="periodoPagos">
+                <select name="periodoPagos" [(ngModel)]='periodoPago' name="periodoPago">
                     <option value="30">Mensual</option>
                     <option value="15">Quincenal</option>
                     <option value="7">Semanal</option>
@@ -57,14 +60,20 @@
             </div>
 
             <div class="grupos">
-                <input type="text" placeholder="Cliente">
+                <input type="text" placeholder="Cliente" [(ngModel)]='cliete' name="cliete">
             </div>
 
             <div class="grupos">
-                <input type="file" accept="image/png, .jpeg, .jpg, image/gif">
+                <input type="text" [(ngModel)]='foto'>
+            
+                <!--<input type="file" accept="image/png, .jpeg, .jpg, image/gif" [(ngModel)]='foto'>
+            -->
             </div>
-
+            <input type="submit" name="" id="" value="calcular" (click)="calcular()">
         </form>
+
+        <div>{{monto}}</div>
+        
 
     </div>
 

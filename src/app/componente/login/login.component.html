@@ -1,0 +1,24 @@
+<app-navegador></app-navegador>
+
+<main>
+    <div class="contenedor">
+        <form action="">
+            <div class="caja">
+                <h1>Ingresar</h1>
+            </div>
+
+            <div class="caja">
+                <input [(ngModel)]="usario.email" type="email" autocomplete="off" placeholder="Usario" name="usario" id="">
+            </div>
+
+            <div class="caja">
+                <input [(ngModel)]="usario.pass" type="password" placeholder="Contrasenia" name="password" id="">
+            </div >
+
+            <div class="caja botones">
+                <button (click)="ingresar()">Ingresar</button>
+            
+            </div>
+        </form>
+    </div>
+</main>
