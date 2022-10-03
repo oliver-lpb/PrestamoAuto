@@ -18,24 +18,28 @@ const routes: Routes = [
   },
 
   {
-    path: 'editUsuario/:id',component:AddUserComponent
+    path: 'editUsuario/:id',component:AddUserComponent,
+    canActivate: [AngularFireAuthGuard]
   },
 
   {
-    path: 'listUser', component:ListUserComponent
+    path: 'listUser', component:ListUserComponent,
+    canActivate: [AngularFireAuthGuard]
   },
 
   {
-    path: 'home', component:DashboardComponent
+    path: 'home', component:DashboardComponent,
+    canActivate: [AngularFireAuthGuard]
   },
 
   {
-    path: 'quotation', component:QuotationComponent
+    path: 'quotation', component:QuotationComponent,
+    canActivate: [AngularFireAuthGuard]
   },
   
 
   {
-    path:'', pathMatch:'full', redirectTo:'home'
+    path:'', pathMatch:'full', redirectTo:'login'
   },
 
   {
