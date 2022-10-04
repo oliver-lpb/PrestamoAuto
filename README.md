@@ -2,6 +2,18 @@
 
 Este proyecto esta generado con angular [Angular CLI](https://github.com/angular/angular-cli) version 13.3.4.
 
+//////////////////// Introduccion grupo seminario ////////////////////
+Para que todo sea mas comodo deben de tener git instalado en sus equipo ya que el proyecto usa varias dependencias que pueden ser molestas de instalar a cada rato. les dejo el link para que descargen la herramienta
+
+https://git-scm.com/download/win 
+
+los versiones de Node.js y angular no importan todo lo que se realiza es compatible con versiones recientes 
+
+version Node.js v16.14.2
+
+version angular  13.3.4
+
+enlace para ver el proyecto https://prestamoautos-ed136.firebaseapp.com/login
 
 //////////////////// Primera Parte ////////////////////
 
