@@ -1,0 +1,27 @@
+<app-navegador></app-navegador>
+
+<main>
+    <h1>registrar</h1>
+    <form [formGroup]="registerUser">
+
+        <div class="grupo">
+            <input type="text" placeholder="email" formControlName="email">
+        </div>
+
+        
+        <div class="grupo">
+            <input type="text" placeholder="password" formControlName="password">
+        </div>
+
+        
+        <div class="grupo">
+            <input type="text" placeholder="repetir password" formControlName="repetirPassword">
+        </div>
+
+        <div class="boton">
+            <button type="submit">Agregar</button>
+        </div>
+    </form>
+</main>
+
+

@@ -35,7 +35,7 @@ direccion:['',Validators.required],
 
   form: FormGroup;
   loading = false;
-  titulo = 'Agregar Usuario'
+  titulo = 'Agregar Cliente'
 
   ngOnInit(): void {
     this.leerEditar();
