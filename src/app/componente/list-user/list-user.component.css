@@ -3,17 +3,13 @@ main{
     margin: 1rem;
 }
 
-.table{
-
-
-}
-
 td{
     padding: 1rem;
 }
+.agrega{
+    background-color: black;
+}
 
-button{
-    padding: 0.5rem;
-    background-color: rgb(128, 143, 230);
-    border: none;
+.boton{
+    margin-left: 1rem;
 }

@@ -1,33 +1,68 @@
 
 <app-navegador></app-navegador>
+
+
 <main>
 
     <div class="card">
         <div class="card-body">
-            <div class="titulo">
+            <div class="container">
                 <h5 class="titulo"><h1>Lista de Clientes</h1></h5>
-                <div class="table">
-                    <tbody>
+
+                <button class="agrega btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Agregar Cliente</button>
+
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">e
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                
+                                <div class="modal-body">
+
+                                    <app-add-user></app-add-user>
+
+                                </div>
+                                <div class="modal-footer"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>Nombre</td>
-                            <td>Apellido</td>
-                            <td>Dpi</td>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Dpi</th>
+                        <th scope="col">NIT</th>
+                        <th scope="col">Telefono</th>
+                        
                         </tr>
+                    </thead>
+                    <tbody>
+                        
                         <tr *ngFor="let tarjeta of users">
+                            <th scope="row">#</th>
                             <td>{{tarjeta.nombre}}</td>
                             <td>{{tarjeta.apellido}}</td>
                             <td>{{tarjeta.dpi}}</td>
+                            <td>{{tarjeta.dpi}}</td>
+                            <td>{{tarjeta.dpi}}</td>
                             
-                            <td> 
-                                <button [routerLink]="['/editUsuario/', tarjeta.id]" >editar</button>  
-                                <button (click)="eliminarTarjeta(tarjeta.id)"> eliminar</button>
-                            </td>
+                            <div> 
+                                <button class="boton btn btn-dark" [routerLink]="['/editUsuario/', tarjeta.id]" >editar</button>  
+
+                                <button class="boton btn btn-dark" (click)="eliminarTarjeta(tarjeta.id)"> eliminar</button>
+                            </div>
                             
                         </tr>
                     </tbody>
-                </div>
+                </table>
             </div>
         </div>
     </div>
     
+
 </main>

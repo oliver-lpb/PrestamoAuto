@@ -1,3 +1,4 @@
+/*
 main{
 
     display: flex;
@@ -44,4 +45,10 @@ button{
 
 .ng-invalid:not(form)  {
     border-left: 10px solid #e20905; 
+}
+
+*/
+
+main{
+    margin: auto;
 }

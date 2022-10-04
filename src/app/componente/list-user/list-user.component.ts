@@ -34,6 +34,7 @@ export class ListUserComponent implements OnInit {
   }
 
   eliminarTarjeta(id:any){
+
     this.dataServices.eliminarTarjeta(id).then(()=>{
       console.log('Bien','Tarjeta Eliminada');
     },error=>{console.log(error)})
