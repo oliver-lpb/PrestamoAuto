@@ -6,10 +6,12 @@ import { environment } from 'src/environments/environment';
 import {AngularFireModule} from '@angular/fire/compat'
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
-
+//para los baners y confirmaciones
+import { ToastrModule } from 'ngx-toastr';
 
 //para hacer funcionar el formulario
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //lista de componentes
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +23,8 @@ import { QuotationComponent } from './componente/quotation/quotation.component';
 import { LoginComponent } from './componente/login/login.component';
 import { NavegadorComponent } from './componente/navegador/navegador.component';
 import { RegisterUserComponent } from './componente/register-user/register-user.component';
+
+import { RetrivePasswordComponent } from './componente/retrive-password/retrive-password.component';
 
 
 
@@ -36,6 +40,8 @@ import { RegisterUserComponent } from './componente/register-user/register-user.
     NavegadorComponent,
     RegisterUserComponent,
 
+    RetrivePasswordComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,9 @@ import { RegisterUserComponent } from './componente/register-user/register-user.
     //para importar y usar el formulario
     ReactiveFormsModule,
     FormsModule,
-
+    //estilos de baners
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
 
 
   ],

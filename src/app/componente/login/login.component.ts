@@ -29,8 +29,14 @@ export class LoginComponent implements OnInit {
     const{email,pass}= this.usario
     this.authServices.login(email,pass)
     .then(response => {
-      console.log(response,'todo bien')
-      this.router.navigate(['/home'])
+      if(response.user?.emailVerified){
+        this.router.navigate(['/home'])
+
+      }else{
+        alert('No esta verificado revise el correo')
+      }
+
+     // this.router.navigate(['/home'])
     }
     )
     .catch(error => {

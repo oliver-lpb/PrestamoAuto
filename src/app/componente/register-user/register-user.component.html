@@ -2,7 +2,7 @@
 
 <main>
     <h1>registrar</h1>
-    <form [formGroup]="registerUser">
+    <form (ngSubmit)="registrar()" [formGroup]="registerUser">
 
         <div class="grupo">
             <input type="text" placeholder="email" formControlName="email">
@@ -10,12 +10,12 @@
 
         
         <div class="grupo">
-            <input type="text" placeholder="password" formControlName="password">
+            <input type="password" placeholder="password" formControlName="password">
         </div>
 
         
         <div class="grupo">
-            <input type="text" placeholder="repetir password" formControlName="repetirPassword">
+            <input type="password" placeholder="repetir password" formControlName="repetirPassword">
         </div>
 
         <div class="boton">
