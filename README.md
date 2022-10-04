@@ -10,6 +10,7 @@ https://git-scm.com/download/win
 los versiones de Node.js y angular no importan todo lo que se realiza es compatible con versiones recientes 
 
 version Node.js v16.14.2
+
 version angular  13.3.4
 
 
