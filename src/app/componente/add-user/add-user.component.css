@@ -34,3 +34,14 @@ button{
     background-color: rgb(128, 143, 230);
     border: none;
 }
+
+.rojo {color:red}
+.verde {color:rgb(7, 214, 69)}
+
+.ng-valid[required], .ng-valid.required, .ng-valid:not(form)  {
+    border-left: 10px solid #42A948; 
+  }
+
+.ng-invalid:not(form)  {
+    border-left: 10px solid #e20905; 
+}
