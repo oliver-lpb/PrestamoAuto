@@ -14,20 +14,25 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent implements OnInit {
-  
+  //id para busacar
   id: string | null;
-  
-  constructor(private fb:FormBuilder, private dataServices:DatosService,
-    private aRote: ActivatedRoute,
-    private router: Router) { 
+  //validacion de correo
+  submitted = false;
 
+
+  constructor(private fb:FormBuilder, 
+              private dataServices:DatosService,
+              private aRote: ActivatedRoute,
+              private router: Router) { 
+
+//Valdacion de formulario
 this.id = this.aRote.snapshot.paramMap.get('id');
 console.log(this.id)
 this.form = this.fb.group({
 nombre:['',Validators.required],
 apellido:['',Validators.required],
-dpi:['',[Validators.required, Validators.minLength(16), Validators.maxLength(16)]],
-correo:['',Validators.required],
+dpi:['',[Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
+correo:['',[Validators.required, Validators.email] ],
 direccion:['',Validators.required],
 });
 
@@ -40,11 +45,7 @@ direccion:['',Validators.required],
   ngOnInit(): void {
     this.leerEditar();
   }
-
-  getValidacion(validacion:string) {
-    return this.form.get(validacion);
-  }
-
+ 
   agregarEditar(){
     if (this.id === null){
       this.registerUser();
@@ -55,20 +56,24 @@ direccion:['',Validators.required],
   }
 
   registerUser(){
-    const User: userModel= {
-      nombre: this.form.value.nombre|| null, //null para que se registre de forma vacia
-      apellido: this.form.value.apellido|| null,
-      dpi: this.form.value.dpi|| null,
-      correo: this.form.value.correo|| null,
-      direccion: this.form.value.direccion|| null,
-      fechaCreacion: new Date|| null,
-      fehcaActualizacion: new Date|| null,
-      
+    console.log(this.form);
+    this.submitted  = true;
+    //condicion para validar formulario
+    if (this.form.invalid){
+      return;
     }
-    
-    this.loading=true;
+    const User: any= {
+    nombre: this.form.value.nombre, //quite el null
+    apellido: this.form.value.apellido,
+    dpi: this.form.value.dpi,
+    correo: this.form.value.correo,
+    direccion: this.form.value.direccion,
+    fechaCreacion: new Date(),
+    fehcaActualizacion: new Date()
+   }
+   this.loading=true;
     this.dataServices.saveUser(User).then(()=>{
-      this.loading=false;
+    this.loading=false;
       console.log('Bien','Tarjeta registrada');
       this.form.reset();
     },error =>{
@@ -77,16 +82,22 @@ direccion:['',Validators.required],
       console.log(error);
     })
     this.router.navigate(['./listUser'])
-  }
+}
 
   actualizarUsuario(id: string){
+    
+    this.submitted  = true;
+    //condicion para validar formulario
+    if (this.form.invalid){
+      return;
+    }
       const User: any= {
-      nombre: this.form.value.nombre|| null, //null para que se registre de forma vacia
-      apellido: this.form.value.apellido|| null,
-      dpi: this.form.value.dpi|| null,
-      correo: this.form.value.correo|| null,
-      direccion: this.form.value.direccion|| null,
-      fehcaActualizacion: new Date|| null,
+      nombre: this.form.value.nombre, //null para que se registre de forma vacia
+      apellido: this.form.value.apellido,
+      dpi: this.form.value.dpi,
+      correo: this.form.value.correo,
+      direccion: this.form.value.direccion,
+      fehcaActualizacion: new Date,
       
     }
     this.loading =true;
@@ -101,6 +112,7 @@ direccion:['',Validators.required],
 
 
   leerEditar(){
+    this.titulo = 'Actualizar Usuario'
     if (this.id !== null){
       this.dataServices.getUsuario(this.id).subscribe(data=>{
         console.log(data);
@@ -114,4 +126,10 @@ direccion:['',Validators.required],
       })
     }
   }
+
+  getValidacion(validacion:string) {
+    return this.form.get(validacion);
   }
+
+
+}
