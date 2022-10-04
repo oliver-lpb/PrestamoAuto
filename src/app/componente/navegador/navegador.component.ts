@@ -16,7 +16,7 @@ export class NavegadorComponent implements OnInit {
 
   cerrar(){
     this.autenticacion.logOut();
-
+    this.router.navigate(['/login']);
   }
 
 }

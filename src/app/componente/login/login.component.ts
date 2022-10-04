@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
     pass:''
   }
 
+  error=false;
+
   constructor(private authServices:AutenticacionService, private router:Router) { }
 
   ngOnInit(): void {
@@ -31,7 +33,9 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/home'])
     }
     )
-    .catch(error => console.log(error,"error"));
+    .catch(error => {
+      this.error=true;
+    });
   }
 
 

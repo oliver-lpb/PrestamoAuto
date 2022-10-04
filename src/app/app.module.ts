@@ -20,6 +20,7 @@ import { DashboardComponent } from './componente/dashboard/dashboard.component';
 import { QuotationComponent } from './componente/quotation/quotation.component';
 import { LoginComponent } from './componente/login/login.component';
 import { NavegadorComponent } from './componente/navegador/navegador.component';
+import { RegisterUserComponent } from './componente/register-user/register-user.component';
 
 
 
@@ -33,6 +34,7 @@ import { NavegadorComponent } from './componente/navegador/navegador.component';
     QuotationComponent,
     LoginComponent,
     NavegadorComponent,
+    RegisterUserComponent,
 
   ],
   imports: [

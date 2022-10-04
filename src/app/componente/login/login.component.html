@@ -6,6 +6,10 @@
                 <h1>Ingresar</h1>
             </div>
 
+            <div *ngIf="error" class="error">
+                <p>La Contrasenia o correo no es correcta, Compruebala</p>
+            </div>
+
             <div class="caja">
                 <input [(ngModel)]="usario.email" type="email" autocomplete="off" placeholder="Usario" name="usario" id="">
             </div>

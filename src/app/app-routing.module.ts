@@ -7,6 +7,7 @@ import { QuotationComponent } from './componente/quotation/quotation.component';
 import { LoginComponent } from './componente/login/login.component';
 
 import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
+import { RegisterUserComponent } from './componente/register-user/register-user.component';
 
 const routes: Routes = [
   
@@ -37,6 +38,10 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard]
   },
   
+  {
+    path: 'usuarios', component:RegisterUserComponent,
+    canActivate: [AngularFireAuthGuard]
+  },
 
   {
     path:'', pathMatch:'full', redirectTo:'login'
