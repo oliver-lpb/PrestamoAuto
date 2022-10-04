@@ -41,6 +41,10 @@ direccion:['',Validators.required],
     this.leerEditar();
   }
 
+  getValidacion(validacion:string) {
+    return this.form.get(validacion);
+  }
+
   agregarEditar(){
     if (this.id === null){
       this.registerUser();
@@ -110,4 +114,4 @@ direccion:['',Validators.required],
       })
     }
   }
-}
+  }
