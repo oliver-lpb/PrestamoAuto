@@ -29,6 +29,10 @@ Abre el proyecto clonado en tu equipo con VS code y abre una terminal desde ahi.
 
 Ingrea sin comillas "npm init"
 
+
+en caso de error usar el siguiente comando sin comillas  "npm install -g @angular/cli"
+
+
 Una vez tengas instalado npm ya esta listo para correr
 
 para iniciar el servidor y ver el proyecto ingresa en la terminal sin comillas "ng serve --o"
