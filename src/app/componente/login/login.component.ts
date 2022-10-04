@@ -26,7 +26,11 @@ export class LoginComponent implements OnInit {
   ingresar(){
     const{email,pass}= this.usario
     this.authServices.login(email,pass)
-    .then(response => console.log(response,'todo bien'))
+    .then(response => {
+      console.log(response,'todo bien')
+      this.router.navigate(['/home'])
+    }
+    )
     .catch(error => console.log(error,"error"));
   }
 
