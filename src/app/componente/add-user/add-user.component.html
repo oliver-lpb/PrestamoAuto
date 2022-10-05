@@ -1,108 +1,58 @@
-<!--
+
 <main>
-    <h1>{{titulo}}</h1>
-
-    
-
-    <div >
-        <div >
-            <div >
-                <h5 class="titulo">
-                    <div *ngIf="loading" class="spinner-border float-end" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                    </div>
-                    </h5>
-                    <br> 
-                    <h3><span *ngIf="submitted && form.invalid" 
-                    class ="rojo" >  *TODOS LOS CAMPOS SON REQUERIDOS</span> </h3>
-                    <form [formGroup]="form" (ngSubmit)="agregarEditar()" novalidate>
-                    
-                        <div class="grupo">   
-                    <input type="text" class="form-control"     placeholder="Nombre" formControlName="nombre">
-                    <div *ngIf = "getValidacion('nombre')?.invalid && (getValidacion('nombre')?.touched || getValidacion('nombre')?.dirty)  " class ="rojo">
-                    <div *ngIf = "getValidacion('nombre')?.errors?.['required']" class ="rojo">
-                    *El "Nombre" es requerido.</div>
-                    </div></div>
-
-                        <div class="grupo">
-                    <input type="text"  class="form-control" placeholder="Apellido" formControlName="apellido">
-                    <div *ngIf = "getValidacion('apellido')?.invalid && (getValidacion('apellido')?.touched || getValidacion('apellido')?.dirty)  " class ="rojo">
-                    <div *ngIf = "getValidacion('apellido')?.errors?.['required']" class ="rojo">
-                    *El "Apellido" es requerido.</div>
-                    </div></div>
-                    
-                    <div class="grupo">
-                    <input type="text" maxlength="16" class="form-control" placeholder="DPI" formControlName="dpi">
-                    <div *ngIf = "getValidacion('dpi')?.invalid && (getValidacion('dpi')?.touched || getValidacion('dpi')?.dirty)  " class ="rojo">
-                    <div *ngIf = "getValidacion('dpi')?.errors?.['required']" class ="rojo">
-                    *El "DPI" es requerido.</div>
-                    <div *ngIf = "getValidacion('dpi')?.errors?.['minlength']" class ="rojo">
-                    *DPI invalido (numero de digitos minimo 13).</div>
-                    </div></div>
-    
-                    <div class="grupo">
-                    <input type="email"  class="form-control" placeholder="Correo" formControlName="correo">
-                    <div *ngIf = "getValidacion('correo')?.invalid && (getValidacion('correo')?.touched || getValidacion('correo')?.dirty)  " class ="rojo">
-                    <div *ngIf = "getValidacion('correo')?.errors?.['required']" class ="rojo">
-                    *El "Correo" es requerido.</div>
-                    <div *ngIf = "getValidacion('correo')?.errors?.['email']" class ="rojo">
-                    *No se reconoce el correo.</div>
-                    </div></div>
-    
-                    <div class="grupo"> 
-                    <input type="text"  class="form-control" placeholder="Direccion" formControlName="direccion">
-                    <div *ngIf = "getValidacion('direccion')?.invalid && (getValidacion('direccion')?.touched || getValidacion('direccion')?.dirty)  " class ="rojo">
-                    <div *ngIf = "getValidacion('direccion')?.errors?.['required']" class ="rojo">
-                    *El "Direccion" es requerida.</div>
-                    </div></div>
-    
-                    <div class="d-grid gap-2"></div>
-                    <button class="btn btn-success btn-lg" type="submit" >Guardar </button>
-    
-                </form>
-    
-            </div>
-        </div>
-    </div>
-</main>
 
 
--->
-<main class="container">
+<div class="container margin-top.10  p-5 ">
 
 
-
-<form class="row g-3">
+<form [formGroup]="form" (ngSubmit)="agregarEditar()" novalidate class="row g-3">
 
     <div class="col-md-3">
       <label for="inputEmail4" class="form-label">Nombre</label>
-      <input type="email" class="form-control" id="inputEmail4">
+      <input type="email" class="form-control" id="inputEmail4" formControlName="nombre">
+      <div *ngIf = "getValidacion('nombre')?.invalid && (getValidacion('nombre')?.touched || getValidacion('nombre')?.dirty)  " class ="rojo">
+        <div *ngIf = "getValidacion('nombre')?.errors?.['required']" class ="rojo">
+        *El "Nombre" es requerido.
+        </div>
+      </div>
     </div>
 
     <div class="col-md-3">
-      <label for="inputPassword4" class="form-label">Apellido</label>
-      <input type="password" class="form-control" id="inputPassword4">
+      <label for="inputPassword4" class="form-label" formControlName="apellido">Apellido</label>
+      <input type="text" class="form-control" id="inputPassword4" formControlName="apellido">
+      <div *ngIf = "getValidacion('apellido')?.invalid && (getValidacion('apellido')?.touched || getValidacion('apellido')?.dirty)  " class ="rojo">
+        <div *ngIf = "getValidacion('apellido')?.errors?.['required']" class ="rojo">
+        *El "Apellido" es requerido.</div>
+        </div>
     </div>
 
     <div class="col-md-3">
         <label for="validationCustomUsername" class="form-label">Correo Electronico</label>
         <div class="input-group has-validation">
           <span class="input-group-text" id="inputGroupPrepend">@</span>
-          <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-          <div class="invalid-feedback">
-            Please choose a username.
-          </div>
+          <input formControlName="correo" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+          
         </div>
       </div>
 
 
-    <div class="col-12">
-      <label for="inputAddress" class="form-label">Address</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    <div class="col-3">
+      <label for="inputAddress" class="form-label">Numero de DPI</label>
+      <input type="text" class="form-control" id="inputAddress" formControlName="dpi">
+      <div *ngIf = "getValidacion('dpi')?.invalid && (getValidacion('dpi')?.touched || getValidacion('dpi')?.dirty)  " class ="rojo">
+        <div *ngIf = "getValidacion('dpi')?.errors?.['required']" class ="rojo">
+        *El "DPI" es requerido.</div>
+        <div *ngIf = "getValidacion('dpi')?.errors?.['minlength']" class ="rojo">
+        *DPI invalido (numero de digitos minimo 13).</div>
+        </div>
     </div>
-    <div class="col-12">
-      <label for="inputAddress2" class="form-label">Address 2</label>
-      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    <div class="col-9">
+      <label for="inputAddress2" class="form-label">Direccion</label>
+      <input type="text" class="form-control" id="inputAddress2" formControlName="direccion">
+      <div *ngIf = "getValidacion('direccion')?.invalid && (getValidacion('direccion')?.touched || getValidacion('direccion')?.dirty)  " class ="rojo">
+        <div *ngIf = "getValidacion('direccion')?.errors?.['required']" class ="rojo">
+        *El "Direccion" es requerida.</div>
+        </div>
     </div>
     <div class="col-md-6">
       <label for="inputCity" class="form-label">City</label>
@@ -119,16 +69,13 @@
       <label for="inputZip" class="form-label">Zip</label>
       <input type="text" class="form-control" id="inputZip">
     </div>
+
     <div class="col-12">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck">
-        <label class="form-check-label" for="gridCheck">
-          Check me out
-        </label>
-      </div>
-    </div>
-    <div class="col-12">
-      <button type="submit" class="btn btn-primary">Sign in</button>
+      <button type="submit" class="btn btn-success btn-lg">Guardar</button>
+      
+      <input type="button" class="btn btn-danger btn-lg" value="Cancelar" (click)="cancelar()"> 
     </div>
   </form>
+
+</div>
 </main>

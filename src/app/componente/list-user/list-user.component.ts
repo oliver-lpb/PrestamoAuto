@@ -14,6 +14,8 @@ import { DatosService } from 'src/app/services/datos.service';
 export class ListUserComponent implements OnInit {
 
   users:userModel[]=[];
+  initAddUser:boolean=false;
+
 
   constructor(private dataServices:DatosService) { }
 
@@ -40,5 +42,14 @@ export class ListUserComponent implements OnInit {
     },error=>{console.log(error)})
   }
 
+  initUser(){
+    if(this.initAddUser==false){
+      
+      this.initAddUser=true;
+    }else{
+      this.initAddUser=false;
+    }
+
+  }
 
 }
