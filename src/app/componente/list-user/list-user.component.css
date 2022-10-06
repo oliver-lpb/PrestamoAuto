@@ -7,9 +7,22 @@ td{
     padding: 1rem;
 }
 .agrega{
-    background-color: black;
+    background-color: rgb(39, 40, 34);
+    border: 1px solid rgb(39, 40, 34);
 }
 
 .boton{
     margin-left: 1rem;
+    color: white
+}
+
+.botonesPersonalizado{
+    background-color: rgb(39, 40, 34);
+    color: white;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    width: 80%;
+    padding: 0.5rem;
 }

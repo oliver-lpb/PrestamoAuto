@@ -7,9 +7,9 @@
 
 <form [formGroup]="form" (ngSubmit)="agregarEditar()" novalidate class="row g-3">
 
-    <div class="col-md-3">
+    <div class="col-md-6">
       <label for="inputEmail4" class="form-label">Nombre</label>
-      <input type="email" class="form-control" id="inputEmail4" formControlName="nombre">
+      <input type="text" class="form-control" id="" formControlName="nombre">
       <div *ngIf = "getValidacion('nombre')?.invalid && (getValidacion('nombre')?.touched || getValidacion('nombre')?.dirty)  " class ="rojo">
         <div *ngIf = "getValidacion('nombre')?.errors?.['required']" class ="rojo">
         *El "Nombre" es requerido.
@@ -17,62 +17,120 @@
       </div>
     </div>
 
-    <div class="col-md-3">
-      <label for="inputPassword4" class="form-label" formControlName="apellido">Apellido</label>
-      <input type="text" class="form-control" id="inputPassword4" formControlName="apellido">
+    <div class="col-md-6">
+      <label for="inputEmail4" class="form-label">Apellido</label>
+      <input type="text" class="form-control" id="" formControlName="apellido">
       <div *ngIf = "getValidacion('apellido')?.invalid && (getValidacion('apellido')?.touched || getValidacion('apellido')?.dirty)  " class ="rojo">
         <div *ngIf = "getValidacion('apellido')?.errors?.['required']" class ="rojo">
-        *El "Apellido" es requerido.</div>
+        *El "apellido" es requerido.
         </div>
+      </div>
     </div>
+
+    
 
     <div class="col-md-3">
         <label for="validationCustomUsername" class="form-label">Correo Electronico</label>
         <div class="input-group has-validation">
           <span class="input-group-text" id="inputGroupPrepend">@</span>
-          <input formControlName="correo" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-          
+          <input formControlName="correo" type="email" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+          <div *ngIf = "getValidacion('correo')?.invalid && (getValidacion('correo')?.touched || getValidacion('correo')?.dirty)  " class ="rojo">
+            <div *ngIf = "getValidacion('correo')?.errors?.['required']" class ="rojo">
+            *El "correo" es requerido.
+            </div>
+          </div>
         </div>
+        
       </div>
 
-
+<!--
+  
+-->
     <div class="col-3">
       <label for="inputAddress" class="form-label">Numero de DPI</label>
       <input type="text" class="form-control" id="inputAddress" formControlName="dpi">
-      <div *ngIf = "getValidacion('dpi')?.invalid && (getValidacion('dpi')?.touched || getValidacion('dpi')?.dirty)  " class ="rojo">
-        <div *ngIf = "getValidacion('dpi')?.errors?.['required']" class ="rojo">
-        *El "DPI" es requerido.</div>
-        <div *ngIf = "getValidacion('dpi')?.errors?.['minlength']" class ="rojo">
-        *DPI invalido (numero de digitos minimo 13).</div>
+        <div *ngIf = "getValidacion('dpi')?.invalid && (getValidacion('dpi')?.touched || getValidacion('dpi')?.dirty)  " class ="rojo">
+            <div *ngIf = "getValidacion('dpi')?.errors?.['required']" class ="rojo">
+            *El "DPI" es requerido.
+            </div>
+            <div *ngIf = "getValidacion('dpi')?.errors?.['minlength']" class ="rojo">
+            *DPI invalido (numero de digitos minimo 13).
+            </div>
         </div>
-    </div>
-    <div class="col-9">
-      <label for="inputAddress2" class="form-label">Direccion</label>
-      <input type="text" class="form-control" id="inputAddress2" formControlName="direccion">
-      <div *ngIf = "getValidacion('direccion')?.invalid && (getValidacion('direccion')?.touched || getValidacion('direccion')?.dirty)  " class ="rojo">
-        <div *ngIf = "getValidacion('direccion')?.errors?.['required']" class ="rojo">
-        *El "Direccion" es requerida.</div>
-        </div>
-    </div>
-    <div class="col-md-6">
-      <label for="inputCity" class="form-label">City</label>
-      <input type="text" class="form-control" id="inputCity">
-    </div>
-    <div class="col-md-4">
-      <label for="inputState" class="form-label">State</label>
-      <select id="inputState" class="form-select">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="col-md-2">
-      <label for="inputZip" class="form-label">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
     </div>
 
+    <div class="col-md-3">
+      <label for="" class="form-label" >NIT</label>
+      <input type="text" class="form-control" id="" formControlName="NumNit" placeholder="Ingresar sin el guion ( - )">
+      <div *ngIf = "getValidacion('NumNit')?.invalid && (getValidacion('NumNit')?.touched || getValidacion('NumNit')?.dirty)  " class ="rojo">
+        <div *ngIf = "getValidacion('NumNit')?.errors?.['required']" class ="rojo">
+        *El "Nit" es requerido.
+        </div>
+        <div *ngIf = "getValidacion('dpi')?.errors?.['minlength']" class ="rojo">
+        *Nit invalido (numero de digitos minimo 9).
+        </div>
+    </div>
+    </div>
+
+    <div class="col-md-3">
+      <label for="inputState" class="form-label">Sexo</label>
+      <select id="inputState" class="form-select" formControlName="sexo">
+        <option>Masculino</option>
+        <option>Femenino</option>
+      </select>
+      <div *ngIf = "getValidacion('sexo')?.invalid && (getValidacion('sexo')?.touched || getValidacion('sexo')?.dirty)  " class ="rojo">
+        <div *ngIf = "getValidacion('sexo')?.errors?.['required']" class ="rojo">
+        *El "sexo" es requerido.
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-12">
+      
+      <label for="inputAddress2" class="form-label">Direccion</label>
+      
+      <!--Captura-->
+      <input type="text" class="form-control" id="inputAddress2" formControlName="direccion">
+      
+      <!--Validaciones-->
+        <div *ngIf = "getValidacion('direccion')?.invalid && (getValidacion('direccion')?.touched || getValidacion('direccion')?.dirty)  " class ="rojo">
+          <div *ngIf = "getValidacion('direccion')?.errors?.['required']" class ="rojo">
+          *El "Direccion" es requerida.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-3">
+      <label for="inputZip" class="form-label" >Telefono</label>
+      <input type="text" class="form-control" id="inputZip" formControlName="telefono">
+      <div *ngIf = "getValidacion('telefono')?.invalid && (getValidacion('telefono')?.touched || getValidacion('telefono')?.dirty)  " class ="rojo">
+        <div *ngIf = "getValidacion('telefono')?.errors?.['required']" class ="rojo">
+        *El "telefono" es requerido.
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <label for="inputZip" class="form-label" >Telefono Secundario</label>
+      <input type="text" class="form-control" id="inputZip" formControlName="telefonoSecundario" placeholder="Opcional">
+
+    </div>
+
+    <div class="col-md-6">
+      <label for="inputCity" class="form-label">Foto del Cliente</label>
+      <input type="text" class="form-control" id="inputCity" formControlName="fotoUrl">
+
+      <div *ngIf = "getValidacion('fotoUrl')?.invalid && (getValidacion('fotoUrl')?.touched || getValidacion('fotoUrl')?.dirty)  " class ="rojo">
+        <div *ngIf = "getValidacion('fotoUrl')?.errors?.['required']" class ="rojo">
+        *El "fotoUrl" es requerido.
+        </div>
+      </div>
+    </div>
+    
     <div class="col-12">
       <button type="submit" class="btn btn-success btn-lg">Guardar</button>
-      
       <input type="button" class="btn btn-danger btn-lg" value="Cancelar" (click)="cancelar()"> 
     </div>
   </form>

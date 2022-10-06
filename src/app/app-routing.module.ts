@@ -8,6 +8,7 @@ import { LoginComponent } from './componente/login/login.component';
 
 import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 import { RegisterUserComponent } from './componente/register-user/register-user.component';
+import { RetrivePasswordComponent } from './componente/retrive-password/retrive-password.component';
 
 const routes: Routes = [
   
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'usuarios', component:RegisterUserComponent,
     canActivate: [AngularFireAuthGuard]
+  },
+
+  {
+    path: 'Reset', component:RetrivePasswordComponent,
   },
 
   {

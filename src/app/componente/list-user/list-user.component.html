@@ -37,13 +37,13 @@
                             <td>{{tarjeta.nombre}}</td>
                             <td>{{tarjeta.apellido}}</td>
                             <td>{{tarjeta.dpi}}</td>
-                            <td>{{tarjeta.dpi}}</td>
-                            <td>{{tarjeta.dpi}}</td>
+                            <td>{{tarjeta.NumNit}}</td>
+                            <td>{{tarjeta.telefono}}</td>
                             
-                            <div> 
-                                <button class="boton btn btn-dark" [routerLink]="['/editUsuario/', tarjeta.id]" >editar</button>  
+                            <div class="botonesPersonalizado"> 
+                                <button class="btn boton" [routerLink]="['/editUsuario/', tarjeta.id]" >editar</button>  
 
-                                <button class="boton btn btn-dark" (click)="eliminarTarjeta(tarjeta.id)"> eliminar</button>
+                                <button class="btn boton" (click)="eliminarTarjeta(tarjeta.id)"> eliminar</button>
                             </div>
                             
                         </tr>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 //importacion del modelo
 import { userModel } from 'src/app/models/user.model';
@@ -17,7 +18,7 @@ export class ListUserComponent implements OnInit {
   initAddUser:boolean=false;
 
 
-  constructor(private dataServices:DatosService) { }
+  constructor(private dataServices:DatosService, private toatr:ToastrService) { }
 
   ngOnInit(): void {
     this.obtenerTarjeta();
@@ -38,7 +39,7 @@ export class ListUserComponent implements OnInit {
   eliminarTarjeta(id:any){
 
     this.dataServices.eliminarTarjeta(id).then(()=>{
-      console.log('Bien','Tarjeta Eliminada');
+      this.toatr.warning("Cliente Eliminado con exito","Informacion")
     },error=>{console.log(error)})
   }
 

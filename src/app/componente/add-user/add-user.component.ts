@@ -8,6 +8,7 @@ import { DatosService } from 'src/app/services/datos.service';
 //modal
 
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-user',
@@ -26,24 +27,24 @@ export class AddUserComponent implements OnInit {
     private fb: FormBuilder,
     private dataServices: DatosService,
     private aRote: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr:ToastrService
   ) {
     //Valdacion de formulario
     this.id = this.aRote.snapshot.paramMap.get('id');
     console.log(this.id);
+
     this.form = this.fb.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
-      dpi: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(13),
-          Validators.maxLength(13),
-        ],
-      ],
+      dpi: ['',[Validators.required,Validators.minLength(13),Validators.maxLength(13)]],
       correo: ['', [Validators.required, Validators.email]],
       direccion: ['', Validators.required],
+      NumNit: ['',[Validators.required,Validators.minLength(9),Validators.maxLength(9)]],
+      telefono: ['', Validators.required],
+      telefonoSecundario : ['', Validators.required],
+      fotoUrl: ['', Validators.required],
+      sexo: ['', Validators.required],
     });
 
     this.seleccionado = new EventEmitter();
@@ -66,7 +67,7 @@ export class AddUserComponent implements OnInit {
   }
 
   registerUser() {
-    console.log(this.form);
+    
     this.submitted = true;
     //condicion para validar formulario
     if (this.form.invalid) {
@@ -78,6 +79,13 @@ export class AddUserComponent implements OnInit {
       dpi: this.form.value.dpi,
       correo: this.form.value.correo,
       direccion: this.form.value.direccion,
+
+      NumNit: this.form.value.NumNit,
+      telefono: this.form.value.telefono,
+      telefonoSecundario: this.form.value.telefonoSecundario,
+      fotoUrl: this.form.value.fotoUrl,
+      sexo: this.form.value.sexo,
+      
       fechaCreacion: new Date(),
       fehcaActualizacion: new Date(),
     };
@@ -85,12 +93,13 @@ export class AddUserComponent implements OnInit {
     this.dataServices.saveUser(User).then(
       () => {
         this.loading = false;
-        console.log('Bien', 'Tarjeta registrada');
+        this.toastr.success("Cliente Registrado", 'Nuevo Registro')
+        
         this.form.reset();
       },
       (error) => {
         this.loading = false;
-        console.log('Erro', 'error');
+        this.toastr.error("Dantos Invalidos","Error")
         console.log(error);
       }
     );
@@ -110,12 +119,19 @@ export class AddUserComponent implements OnInit {
       dpi: this.form.value.dpi,
       correo: this.form.value.correo,
       direccion: this.form.value.direccion,
+      NumNit: this.form.value.NumNit,
+      telefono:this.form.value.telefono,
+      telefonoSecundario:this.form.value.telefonoSecundario,
+      
+      fotoUrl: this.form.value.fotoUrl,
+      sexo: this.form.value.sexo,
       fehcaActualizacion: new Date(),
     };
     this.loading = true;
     this.dataServices.actualizaUsuario(id, User).then(() => {
       this.loading = false;
       console.log('Tarjeta modificada');
+      this.toastr.success('Cambios realizados con exito','Modificaion')
       this.form.reset();
     });
     this.router.navigate(['./listUser']);
@@ -132,6 +148,11 @@ export class AddUserComponent implements OnInit {
           dpi: data.payload.data()['dpi'],
           correo: data.payload.data()['correo'],
           direccion: data.payload.data()['direccion'],
+          NumNit: data.payload.data()['NumNit'],
+          telefono: data.payload.data()['telefono'],
+          telefonoSecundario: data.payload.data()['telefonoSecundario'],
+          fotoUrl: data.payload.data()['fotoUrl'],
+          sexo: data.payload.data()['sexo'],
         });
       });
     }
