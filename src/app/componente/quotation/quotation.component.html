@@ -34,9 +34,9 @@
                     <input type="text" placeholder="Interes Fijo" [(ngModel)]='interesFijo' name="interesFijo">
                 </div>
 
-                <div *ngIf="interesTipo==2" class="porcentaje" [(ngModel)]='interesPorcentaje' name="interesPorcentaje">
-                    <select>
-                        <option value="0.03">3%</option>
+                <div *ngIf="interesTipo==2" class="porcentaje" >
+                    <select [(ngModel)]='interesPorcentaje' name="interesPorcentaje">
+                        <option  value="0.03">3%</option>
                         <option value="0.05">5%</option>
                         <option value="0.10">10%</option>
                         <option value="0.15">15%</option>
@@ -53,9 +53,9 @@
             <div class="grupos">
                 <label for="periodoPagos">Periodo de pago</label>
                 <select name="periodoPagos" [(ngModel)]='periodoPago' name="periodoPago">
-                    <option value="30">Mensual</option>
-                    <option value="15">Quincenal</option>
-                    <option value="7">Semanal</option>
+                    <option value="mensual">Mensual</option>
+                    <option value="quincenal">Quincenal</option>
+                    <option value="semanal">Semanal</option>
                 </select>
             </div>
 
@@ -69,10 +69,10 @@
                 <!--<input type="file" accept="image/png, .jpeg, .jpg, image/gif" [(ngModel)]='foto'>
             -->
             </div>
-            <input type="submit" name="" id="" value="calcular" (click)="calcular()">
+            <input type="submit" name="" id="" value="calcular" (click)="comprobacionDatos()">
         </form>
 
-        <div>{{monto}}</div>
+        <div>{{monto}}</div>             
         
 
     </div>

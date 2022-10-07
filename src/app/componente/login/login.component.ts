@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //para las rutas
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 //para la autenticacion
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
     pass:''
   }
 
-  constructor(private authServices:AutenticacionService, private router:Router) { }
+
+  constructor(private authServices:AutenticacionService, private router:Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -27,11 +29,20 @@ export class LoginComponent implements OnInit {
     const{email,pass}= this.usario
     this.authServices.login(email,pass)
     .then(response => {
-      console.log(response,'todo bien')
-      this.router.navigate(['/home'])
+      if(response.user?.emailVerified){
+        this.router.navigate(['/home'])
+
+      }else{
+        alert('No esta verificado revise el correo')
+      }
+
+     // this.router.navigate(['/home'])
     }
     )
-    .catch(error => console.log(error,"error"));
+    .catch(() => {
+
+      this.toastr.error("Correo o contrasenia incorrectos","Error")
+    });
   }
 
 

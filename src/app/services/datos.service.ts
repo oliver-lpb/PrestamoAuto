@@ -8,6 +8,7 @@ import { Observable, Subject } from 'rxjs';
 //para la autenticaion
 import { Auth,  } from '@angular/fire/auth';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { userAdminModel } from '../models/adminUser.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +23,19 @@ export class DatosService {
     return this.firebase.collection('usuarios').add(userForm);
   }
 
+
   getUser():Observable<any>{
     return this.firebase.collection('usuarios',ref => ref.orderBy('fechaCreacion','asc')).snapshotChanges();
   }
 
+  // usarios admin
+  saveUserAdmin(userForm:userAdminModel):Promise<any>{
+    return this.firebase.collection('usuariosAdmin').add(userForm);
+  }
+
+  getUserAdmin():Observable<any>{
+    return this.firebase.collection('usuariosAdmin',ref => ref.orderBy('correo','asc')).snapshotChanges();
+  }
 
 
   //en edicion

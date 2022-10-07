@@ -1,23 +1,32 @@
 
-<main>
-    <div class="contenedor">
-        <form action="">
+<main class="m-0 vh-100 row justify-content-center align-items-center">
+    <div class="col-auto p-5 text-center">
+        <form class="formulario">
             <div class="caja">
-                <h1>Ingresar</h1>
+                <h1>Bienvenidos</h1>
             </div>
 
-            <div class="caja">
-                <input [(ngModel)]="usario.email" type="email" autocomplete="off" placeholder="Usario" name="usario" id="">
+            <div class="mb-3">
+                <label class="form-label">Correo Electronico</label>
+                <input [(ngModel)]="usario.email" type="email" autocomplete="off" name="usario" class="form-control">
             </div>
 
-            <div class="caja">
-                <input [(ngModel)]="usario.pass" type="password" placeholder="Contrasenia" name="password" id="">
+            <div class="mb-3">
+                <label class="form-label">Contrasenia</label>
+                <input [(ngModel)]="usario.pass" type="password" name="password" class="form-control">
+                <div class="col-auto">
+                    <span id="passwordHelpInline" class="form-text">
+                    Maxiomo de 8 - 20 caracteres de largo
+                    </span>
+                </div>
             </div >
-
             <div class="caja botones">
-                <button (click)="ingresar()">Ingresar</button>
-            
+                <button class="btn btn-primary"(click)="ingresar()">Ingresar</button>
             </div>
         </form>
+
+        <div>
+            <a routerLink="/Reset" >Restablecer Contrasenia</a>
+        </div>
     </div>
 </main>

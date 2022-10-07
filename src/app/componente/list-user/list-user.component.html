@@ -1,33 +1,57 @@
 
 <app-navegador></app-navegador>
+
+
 <main>
 
     <div class="card">
         <div class="card-body">
-            <div class="titulo">
+            <div class="container">
                 <h5 class="titulo"><h1>Lista de Clientes</h1></h5>
-                <div class="table">
-                    <tbody>
+
+                <button class="agrega btn btn-primary" (click)="initUser()">Agregar Cliente</button>
+
+                <div *ngIf="initAddUser">
+                    <div>
+                        <app-add-user (seleccionado)="initUser()"></app-add-user>
+                    </div>
+                </div>
+
+
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>Nombre</td>
-                            <td>Apellido</td>
-                            <td>Dpi</td>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Dpi</th>
+                        <th scope="col">NIT</th>
+                        <th scope="col">Telefono</th>
+                        
                         </tr>
+                    </thead>
+                    <tbody>
+                        
                         <tr *ngFor="let tarjeta of users">
+                            <th scope="row">#</th>
                             <td>{{tarjeta.nombre}}</td>
                             <td>{{tarjeta.apellido}}</td>
                             <td>{{tarjeta.dpi}}</td>
+                            <td>{{tarjeta.NumNit}}</td>
+                            <td>{{tarjeta.telefono}}</td>
                             
-                            <td> 
-                                <button [routerLink]="['/editUsuario/', tarjeta.id]" >editar</button>  
-                                <button (click)="eliminarTarjeta(tarjeta.id)"> eliminar</button>
-                            </td>
+                            <div class="botonesPersonalizado"> 
+                                <button class="btn boton" [routerLink]="['/editUsuario/', tarjeta.id]" >editar</button>  
+
+                                <button class="btn boton" (click)="eliminarTarjeta(tarjeta.id)"> eliminar</button>
+                            </div>
                             
                         </tr>
                     </tbody>
-                </div>
+                </table>
             </div>
         </div>
     </div>
     
+
 </main>

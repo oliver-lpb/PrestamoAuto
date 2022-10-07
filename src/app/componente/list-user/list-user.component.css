@@ -3,17 +3,26 @@ main{
     margin: 1rem;
 }
 
-.table{
-
-
-}
-
 td{
     padding: 1rem;
 }
+.agrega{
+    background-color: rgb(39, 40, 34);
+    border: 1px solid rgb(39, 40, 34);
+}
 
-button{
+.boton{
+    margin-left: 1rem;
+    color: white
+}
+
+.botonesPersonalizado{
+    background-color: rgb(39, 40, 34);
+    color: white;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    width: 80%;
     padding: 0.5rem;
-    background-color: rgb(128, 143, 230);
-    border: none;
 }
