@@ -24,7 +24,7 @@ form{
 }
 form{
     width: 250px;
-    height: 270px;
+    height: 275px;
   
 }
 form , input {
@@ -45,6 +45,6 @@ form ,button {
 }
 
 .reestablecer{
-    color: black;
-    text-shadow: 1px 1px #fff;
+    margin: 10px 10px;
+    color: white;
  }
