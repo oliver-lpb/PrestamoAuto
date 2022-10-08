@@ -1,32 +1,39 @@
-
+<link rel="stylesheet" href="login.component.css">
 <main class="login m-0 vh-100 row justify-content-center align-items-center">
     <div class="col-auto p-5 text-center">
+        <section>
+        </section>
         <form class="formulario">
+           
             <div class="caja">
-                <h1>Bienvenidos</h1>
+                
+                <img class="logotipo" src="../../../assets/logotipoCarro.jpg" height="90" width="90" >
+
+            </div>
+            <h3 class="encabezado">Bienvenidos</h3>
+
+            <div class="mb-3">
+                <!--  <label class="form-label">Correo Electronico</label> --> 
+               
+                <input [(ngModel)]="usario.email" type="email" autocomplete="off" name="usario" class="form-control" placeholder="@Ingresar Usuario ">
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Correo Electronico</label>
-                <input [(ngModel)]="usario.email" type="email" autocomplete="off" name="usario" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Contrasenia</label>
-                <input [(ngModel)]="usario.pass" type="password" name="password" class="form-control">
+              <!--<label class="form-label">Contrasenia</label> -->  
+                <input [(ngModel)]="usario.pass" type="password" name="password" class="form-control " placeholder="ingrese su clave ">
                 <div class="col-auto">
                     <span id="passwordHelpInline" class="form-text">
-                    Maxiomo de 8 - 20 caracteres de largo
+                      8 - 20 caracteres de largo
                     </span>
                 </div>
             </div >
             <div class="caja botones">
-                <button class="btn btn-primary"(click)="ingresar()">Ingresar</button>
+                <button class="btn btn-danger"(click)="ingresar()">Ingresar</button>
             </div>
         </form>
 
         <div>
-            <a routerLink="/Reset" >Restablecer Contrasenia</a>
+            <a class="reestablecer" routerLink="/Reset" >Restablecer Contrasenia</a>
         </div>
     </div>
 </main>

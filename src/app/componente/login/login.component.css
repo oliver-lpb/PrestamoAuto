@@ -1,0 +1,50 @@
+.login{
+    background: #141414;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0c0c0c, #240101);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #050505, #701515); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+form{
+    border: white 1px solid;
+    border-radius: 15%;
+    padding: 24px;
+    box-sizing: border-box;
+
+}
+
+.logotipo{
+   
+ border-radius: 50%;
+   top: 140px;
+   position: absolute;
+   transform: translate(-50%, -50%);
+   box-sizing: border-box;
+   border: white solid  1px;
+   
+}
+form{
+    width: 250px;
+    height: 270px;
+  
+}
+form , input {
+    
+    color: white;
+    background-color: transparent;
+}
+form ,button {
+    background-color: transparent;
+    
+}
+
+.encabezado{
+    
+    /*background: linear-gradient(rgb(29, 2, 2),rgb(12, 12, 12));
+    -webkit-background-clip: text;*/
+    color: white 2px;  
+}
+
+.reestablecer{
+    color: black;
+    text-shadow: 1px 1px #fff;
+ }
