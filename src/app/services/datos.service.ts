@@ -59,6 +59,15 @@ export class DatosService {
     return this.firebase.collection('usuarios').doc(id).update(data);
   }
 
+  //quotation servicios
+  createDoc(data: any, path: string, id: string) {
+    const collection = this.firebase.collection(path);
+    return collection.doc(id).set(data);
+  }
 
+updateDoc(data: any, path: string, id: string) {
+  const collection = this.firebase.collection(path);
+  return collection.doc(id).set(data);
+  }
 
 }

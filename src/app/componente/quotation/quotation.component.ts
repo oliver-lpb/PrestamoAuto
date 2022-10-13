@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { FormBuilder, FormGroup, NgModel } from '@angular/forms';
+import { Observable } from 'rxjs';
+import {Cotizacion, Quotation} from 'src/app/models/quotation.models';
+import { DatosService } from 'src/app/services/datos.service';
 
 @Component({
   selector: 'app-quotation',
@@ -7,45 +11,58 @@ import { NgModel } from '@angular/forms';
   styleUrls: ['./quotation.component.css']
 })
 export class QuotationComponent implements OnInit {
-  interesTipo:number = 0;
-  monto:number=0;
-  cuotaDeseada:number=0;
-  interesFijo:number=0;
-  interesPorcentaje:number=0;
-  fechaPago:string='';
-  periodoPago:string='';
-  cliete:string='';
-  foto:string='';
-  capital:number=0;
-  resultado:number=0;
-  saldo:number=0;
-  porcentajeVariable:number=0;
 
-  constructor() { }
+  listPagos:[] | undefined ;
+  cotizacion: Quotation={
+    interesTipo: 0,
+    monto:0,
+    cuotaDeseada:0,
+    interesFijo:0,
+    interesPorcentaje:0,
+    fechaPago:'',
+    periodoPago:'',
+    cliente:'',
+    foto:'',
+    capital:0,
+    resultado:0,
+    saldo:0,
+    porcentajeVariable:0
+  }
+
+  cot:Cotizacion={
+  nombre:'',
+  pagos: [],
+  }
+
+
+  
+
+  constructor(private dataServices: DatosService) {  
+  } 
 
 
   ngOnInit(): void {
   }
 
   tipoInteres(tipo:number){
-    this.interesTipo=tipo;
-    console.log(this.interesTipo)
+    this.cotizacion.interesTipo=tipo;
+    console.log(this.cotizacion.interesTipo)
   }
 
 //comprueba que todos los datos esten llenos
   comprobacionDatos(){
-this.porcentajeVariable=this.interesPorcentaje;
-console.log(this.porcentajeVariable);
-this.interesPorcentaje= this.monto*this.interesPorcentaje;  
+this.cotizacion.porcentajeVariable=this.cotizacion.interesPorcentaje;
+console.log(this.cotizacion.porcentajeVariable);
+this.cotizacion.interesPorcentaje= this.cotizacion.monto*this.cotizacion.interesPorcentaje;  
 
-if(this.interesTipo ==1){
-    if (this.monto<this.cuotaDeseada || this.monto==0|| this.cuotaDeseada==0 || this.interesFijo==0 || this.fechaPago=="" || this.periodoPago==""|| this.cuotaDeseada<= this.interesFijo){
-        console.log("Error datos no renellados o Interes mayor a la cuota deseada")
+if(this.cotizacion.interesTipo ==1){
+    if (this.cotizacion.monto<this.cotizacion.cuotaDeseada || this.cotizacion.monto==0|| this.cotizacion.cuotaDeseada==0 || this.cotizacion.interesFijo==0 || this.cotizacion.fechaPago=="" || this.cotizacion.periodoPago==""|| this.cotizacion.cuotaDeseada<= this.cotizacion.interesFijo){
+        console.log("Error datos no rellenados o Interes mayor a la cuota deseada")
         return;
        } 
   this.calcularInteresFijo();
-  }else if (this.interesTipo==2){
-    if (this.monto<this.cuotaDeseada || this.monto==0|| this.cuotaDeseada==0 || this.fechaPago=="" || this.periodoPago==""|| this.cuotaDeseada<= this.interesPorcentaje || this.interesPorcentaje>= this.cuotaDeseada){
+  }else if (this.cotizacion.interesTipo==2){
+    if (this.cotizacion.monto<this.cotizacion.cuotaDeseada || this.cotizacion.monto==0|| this.cotizacion.cuotaDeseada==0 || this.cotizacion.fechaPago=="" || this.cotizacion.periodoPago==""|| this.cotizacion.cuotaDeseada<= this.cotizacion.interesPorcentaje || this.cotizacion.interesPorcentaje>= this.cotizacion.cuotaDeseada){
       console.log("Error datos no renellados o Interes % mayor a la cuota deseada")
       return;
      }   this.calcularInteresPorcentaje();
@@ -53,97 +70,135 @@ if(this.interesTipo ==1){
  }
 
 
- calcularInteresPorcentaje(){
+calcularInteresPorcentaje(){
   console.log("Fecha_de_pago "+"Cuota fija "+"Intereses "+ "Capital " +"Saldo" );
   //variables
-  let fecha = new Date(this.fechaPago);
+  let fecha = new Date(this.cotizacion.fechaPago);
   let contador =2;
      
 //saldo inicial
-this.saldo=this.monto;
-
-//Impresion temporal
-document.write ('<table cellspacing="5" border="2">');
-document.write (" <tr><td>Fecha de pago");
-document.write (" <tr><td>Fecha de pago <th>Cuota fija<th>Intereses<th>Capital <th>Saldo</tr>");
-document.write ("<tr><td><td><td><td><td>"+this.saldo+"</td></tr>");
+this.cotizacion.saldo=this.cotizacion.monto;
 
 
 //para que inicie el dia que se eligio
-if (this.periodoPago=="mensual"){
+if (this.cotizacion.periodoPago=="mensual"){
 fecha.setDate(fecha.getDate() +1);
-this.fechaPago=(fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
+this.cotizacion.fechaPago=(fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
 } 
 
 while ( contador >= 0) {
 //capital calculo ciclo
-this.interesPorcentaje = this.saldo * this.porcentajeVariable;
-this.capital = this.cuotaDeseada - this.interesPorcentaje;
-this.saldo = this.saldo - this.capital;
+this.cotizacion.interesPorcentaje = this.cotizacion.saldo * this.cotizacion.porcentajeVariable;
+this.cotizacion.capital = this.cotizacion.cuotaDeseada - this.cotizacion.interesPorcentaje;
+this.cotizacion.saldo = this.cotizacion.saldo - this.cotizacion.capital;
 
-//impresion de pago temporal
-document.write ("<tr><td>"+this.fechaPago+"<td>"+this.cuotaDeseada+"<td>"+this.interesPorcentaje+"<td>"+this.capital+"<td>"+this.saldo+"</tr>");
+this.cot.nombre = this.cotizacion.cliente;
+  this.cot.pagos.push({
+    "fechaPago": this.cotizacion.fechaPago ,
+    "cuotaCotizacion": this.cotizacion.cuotaDeseada ,
+    "interesCotizacion": this.cotizacion.interesPorcentaje ,
+    "capitalCotizacion": this.cotizacion.capital ,
+    "saldoCotizacion":this.cotizacion.saldo,
+    "firmaPago":"Boleta de pago"
+  });
+console.log(this.cot);
+
+const noboleta= '0001';
+const path = 'cotizacion/';
+this.dataServices.createDoc(this.cot,path, noboleta);
+
 
 //condicion para sumar fecha 
-if (this.periodoPago=="mensual"){
+if (this.cotizacion.periodoPago=="mensual"){
 fecha.setMonth(fecha.getMonth()+1);
-this.fechaPago=(fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
-}else if(this.periodoPago=="quincenal"){
+this.cotizacion.fechaPago=(fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
+}else if(this.cotizacion.periodoPago=="quincenal"){
 fecha.setDate(fecha.getDate() + 15);
- this.fechaPago=(fecha.getDate()+1 + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear());
-}else if(this.periodoPago=="semanal"){
+ this.cotizacion.fechaPago=(fecha.getDate()+1 + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear());
+}else if(this.cotizacion.periodoPago=="semanal"){
 fecha.setDate(fecha.getDate() + 7);
-this.fechaPago=(fecha.getDate()+1 + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
+this.cotizacion.fechaPago=(fecha.getDate()+1 + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
 }  
-  //cotador para finalisar el ciclo
-  contador =this.saldo;
-  } 
-  document.writeln ("</table>");
-}
  
+  contador =this.cotizacion.saldo;
+  } 
+  
+}
+
+
 
   calcularInteresFijo(){
     //variables
-    let fecha = new Date(this.fechaPago);
+    let fecha = new Date(this.cotizacion.fechaPago);
     let contador =2;
-       
+         
 //saldo inicial
-this.saldo=this.monto;
+this.cotizacion.saldo=this.cotizacion.monto;
 
 //para que inicie el dia que se eligio
-if (this.periodoPago=="mensual"){
+if (this.cotizacion.periodoPago=="mensual"){
   fecha.setDate(fecha.getDate() +1);
-  this.fechaPago=(fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
+  this.cotizacion.fechaPago=(fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
 } 
 
-//Impresion temporal
-document.write ('<table cellspacing="5" border="2">');
-document.write (" <tr><td>Fecha de pago <th>Cuota fija<th>Intereses<th>Capital <th>Saldo</tr>");
-document.write ("<tr><td><td><td><td><td>"+this.saldo+"</td></tr>");
 
 //condicion para elegir el tipo de interes
 while ( contador >= 1) {
   //capital calculo ciclo
-  this.capital = this.cuotaDeseada - this.interesFijo;
-  this.saldo = this.saldo - this.capital;
+  this.cotizacion.capital = this.cotizacion.cuotaDeseada - this.cotizacion.interesFijo;
+  this.cotizacion.saldo = this.cotizacion.saldo - this.cotizacion.capital;
 
-  //impresion de pago temporal
-document.write ("<tr><td>"+this.fechaPago+"<td>"+this.cuotaDeseada+"<td>"+this.interesFijo+"<td>"+this.capital+"<td>"+this.saldo+"</tr>");
+  
+  this.cot.nombre = this.cotizacion.cliente;
+  this.cot.pagos.push({
+    "fechaPago": this.cotizacion.fechaPago ,
+    "cuotaCotizacion": this.cotizacion.cuotaDeseada ,
+    "interesCotizacion": this.cotizacion.interesFijo ,
+    "capitalCotizacion": this.cotizacion.capital ,
+    "saldoCotizacion":this.cotizacion.saldo,
+    "firmaPago":"Boleta de pago"
+  });
+console.log(this.cot);
+
+const noboleta= '0001';
+const path = 'cotizacion/';
+this.dataServices.createDoc(this.cot,path, noboleta);
+
+
+const cot:Cotizacion ={
+  nombre: this.cotizacion.cliente,
+  pagos: [{
+    fechaPago: this.cotizacion.fechaPago,
+    cuotaCotizacion: this.cotizacion.cuotaDeseada,
+    interesCotizacion: this.cotizacion.interesFijo,
+    capitalCotizacion: this.cotizacion.capital,
+    saldoCotizacion: this.cotizacion.capital,
+    firmaPago: "Por firmar"
+  }]
+}; console.log(cot);
+
+
+
+
+
 
 //condicion para sumar fecha 
- if (this.periodoPago=="mensual"){
+ if (this.cotizacion.periodoPago=="mensual"){
   fecha.setMonth(fecha.getMonth()+1);
-  this.fechaPago=(fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
-  }else if(this.periodoPago=="quincenal"){
+  this.cotizacion.fechaPago=(fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
+  }else if(this.cotizacion.periodoPago=="quincenal"){
   fecha.setDate(fecha.getDate() + 15);
-   this.fechaPago=(fecha.getDate()+1 + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear());
-  }else if(this.periodoPago=="semanal"){
+   this.cotizacion.fechaPago=(fecha.getDate()+1 + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear());
+  }else if(this.cotizacion.periodoPago=="semanal"){
   fecha.setDate(fecha.getDate() + 7);
-  this.fechaPago=(fecha.getDate()+1 + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
+  this.cotizacion.fechaPago=(fecha.getDate()+1 + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
   }  
     //cotador para finalisar el ciclo
-    contador =this.saldo;
+    contador =this.cotizacion.saldo;
     }  
-    document.writeln ("</table>");
+    //document.writeln ("</table>");
+    
   }
+
+ 
 }
